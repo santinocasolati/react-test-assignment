@@ -2,15 +2,16 @@ import { useForm } from 'react-hook-form';
 import { useRef } from 'react';
 
 import { login } from '../api/index.js';
+import { loginTs } from '../api/indexTs';
 
 import { joinClassNames } from '../utils/joinClassNames';
 
-function Login(props:object) {
+function Login(props: {userSet:any}) {
     const { register, handleSubmit } = useForm();
-    const emailRef = useRef(null);
-    const passwordRef = useRef(null);
-    const btnRef = useRef(null);
-    const formRef = useRef(null);
+    const emailRef: {current:any} = useRef(null);
+    const passwordRef: {current:any} = useRef(null);
+    const btnRef: {current:any} = useRef(null);
+    const formRef: {current:any} = useRef(null);
 
     const validateEmail = (email:string) => {
         let validated:boolean = false;
@@ -51,19 +52,20 @@ function Login(props:object) {
         formRef.current.classList.remove("validating");
     }
 
-    const sendForm = async (data:object) => {
-        const result:object = await login(data);
+    const sendForm = async (data: {email: string, password:string}) => {
+        // const result:object = await login(data);
+        const result: {error: string, data: { avatar:string, name: string }} = await loginTs(data);
         
         if (result.error) {
             emailRef.current.classList.add("error");
             passwordRef.current.classList.add("error");
             restartForm();
         } else {
-            props.userSet(data);
+            props.userSet(result.data);
         }
     }
 
-    const onSubmit = (data:object) => {
+    const onSubmit = (data: {email: string, password:string}) => {
         const validations:boolean[] = [validateEmail(data.email), validatePassword(data.password)];
 
         formRef.current.classList.add("validating");

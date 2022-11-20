@@ -12,7 +12,7 @@ function App() {
       
       <Logo />
       
-      {user ? <Logout userSet={setUser} /> : <Login userSet={setUser}/>}
+      {user ? <Logout userSet={setUser} data={user} /> : <Login userSet={setUser}/>}
 
     </div>
   );
