@@ -3,6 +3,8 @@ import { useRef } from 'react';
 
 import { login } from '../api/index.js';
 
+import { joinClassNames } from '../utils/joinClassNames';
+
 function Login(props:object) {
     const { register, handleSubmit } = useForm();
     const emailRef = useRef(null);
@@ -79,7 +81,7 @@ function Login(props:object) {
 
     return (
         <div className="white-box">
-            <div className="login white-box-container">
+            <div className={joinClassNames(["login", "white-box-container"])}>
                 <div className="login-form-text">
                     <span className="primary-text">Welcome, Stranger!</span>
                     <p className="secondary-text">Please log in to this form if you wish <br /> to pass the exam.</p>

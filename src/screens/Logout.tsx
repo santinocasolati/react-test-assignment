@@ -1,3 +1,5 @@
+import { joinClassNames } from '../utils/joinClassNames';
+
 function Logout(props: object) {
     const handleClick = () => {
         props.userSet(null);
@@ -5,7 +7,7 @@ function Logout(props: object) {
 
     return (
         <div className="white-box">
-            <div className="logout white-box-container">
+            <div className={joinClassNames(["logout", "white-box-container"])}>
                 <div className="user-photo">
                     <img src="/avatar.jpeg" alt="User" />
                 </div>
