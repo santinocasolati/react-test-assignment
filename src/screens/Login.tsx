@@ -24,8 +24,10 @@ function Login(props: {userSet:any}) {
 
         if (validated == false) {
             emailRef.current.classList.add("error");
+            emailRef.current.children[1].innerHTML = "Invalid email";
         } else {
             emailRef.current.classList.remove("error");
+            emailRef.current.children[1].innerHTML = "";
         }
 
         return validated;
@@ -40,8 +42,10 @@ function Login(props: {userSet:any}) {
 
         if (validated == false) {
             passwordRef.current.classList.add("error");
+            passwordRef.current.children[1].innerHTML = "Invalid password";
         } else {
             passwordRef.current.classList.remove("error");
+            passwordRef.current.children[1].innerHTML = "";
         }
 
         return validated;
@@ -59,6 +63,7 @@ function Login(props: {userSet:any}) {
         if (result.error) {
             emailRef.current.classList.add("error");
             passwordRef.current.classList.add("error");
+            emailRef.current.children[1].innerHTML = "Invalid credentials";
             restartForm();
         } else {
             props.userSet(result.data);
@@ -90,8 +95,8 @@ function Login(props: {userSet:any}) {
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} id="login-form" ref={formRef}>
-                    <div className="input-wrapper" ref={emailRef}><input type="text" placeholder="Email" {...register("email")} /></div>
-                    <div className="input-wrapper" ref={passwordRef}><input type="password" placeholder="Password" {...register("password")} /></div>
+                    <div className="input-wrapper" ref={emailRef}><input type="text" placeholder="Email" {...register("email")} /> <span className="error-msg"></span></div>
+                    <div className="input-wrapper" ref={passwordRef}><input type="password" placeholder="Password" {...register("password")} /> <span className="error-msg"></span></div>
                 </form>
 
                 <button type="submit" form="login-form" onClick={handleBtnClick} ref={btnRef}>
