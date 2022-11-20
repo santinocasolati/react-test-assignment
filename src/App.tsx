@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Logo from "./components/Logo";
 import Login from "./screens/Login";
+import Logout from "./screens/Logout";
 
 function App() {
   const [user, setUser] = useState();
@@ -11,7 +12,7 @@ function App() {
       
       <Logo />
       
-      {user ? <div>HELLO</div> : <Login userSet={setUser}/>}
+      {user ? <Logout userSet={setUser} /> : <Login userSet={setUser}/>}
 
     </div>
   );

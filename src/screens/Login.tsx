@@ -78,8 +78,8 @@ function Login(props:object) {
     }
 
     return (
-        <div id="login">
-            <div className="login-form-container">
+        <div className="white-box">
+            <div className="login white-box-container">
                 <div className="login-form-text">
                     <span className="primary-text">Welcome, Stranger!</span>
                     <p className="secondary-text">Please log in to this form if you wish <br /> to pass the exam.</p>
